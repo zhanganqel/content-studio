@@ -13,7 +13,3 @@ coverage/
 # Tencent Cloud EdgeOne
 .edgeone/
 .tef_dist/
-
-# Keep repository documentation local only.
-/README.md
-/docs/
