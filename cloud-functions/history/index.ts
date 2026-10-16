@@ -15,6 +15,7 @@ export async function onRequestPost(context: any) {
     if (!await canAccessConversation(context.agent.store, conversationId, userId)) {
       return jsonResponse({ error: 'Conversation not found.' }, 404);
     }
+    // 从 EdgeOne 托管存储读取指定会话的持久化消息历史。
     const items = await context.agent.store.getMessages({
       conversationId,
       limit: 100,

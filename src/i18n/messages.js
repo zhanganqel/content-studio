@@ -857,8 +857,8 @@ export const messages = {
       description:
         '统一沉淀项目资料文件与可复用资料库，后续可在 AI 创作、站点建设和多渠道内容生成时按需调用。',
       tabs: {
-        files: '资料库（文档、表格、PDF 等文件）',
-        library: '素材库（图片、视频）',
+        files: '资料库',
+        library: '素材库',
       },
       actions: {
         save: '保存',
@@ -1851,8 +1851,8 @@ export const messages = {
       description:
         'Store reusable project files and asset libraries for AI writing, site building, and multi-channel content generation.',
       tabs: {
-        files: 'File Library (documents, spreadsheets, PDFs, etc.)',
-        library: 'Media Library (images and videos)',
+        files: 'File Library',
+        library: 'Media Library',
       },
       actions: {
         save: 'Save',

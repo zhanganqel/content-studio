@@ -13,6 +13,7 @@
 | `blog-article-ai-task-flow.md` | 博客文章协同创作、自动创作、未保存退出拦截和任务成文规则。 |
 | `demo-data-storage.md` | 固定演示数据库、sessionStorage 业务快照、文章任务和 Copilot 会话存储边界。 |
 | `edgeone-copilot-architecture.md` | EdgeOne Copilot 会话、接口、SSE、缓存迁移和部署边界。 |
+| `knowledge-items-prd.md` | 知识条目的当前实现、交互规则、数据存储边界和后端化需求。 |
 | `../demo-data/rejin-cnc/README.md` | 演示数据库说明。 |
 | `../scripts/README.md` | 支持脚本说明。 |
 

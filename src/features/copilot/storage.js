@@ -5,6 +5,7 @@ import {
   writeDemoSessionTable,
 } from '../../services/demoSessionStore.js';
 
+// Copilot 旧缓存清理标记和侧栏偏好保存在 localStorage。
 const cleanupVersionKey = 'content-studio-edgeone-copilot:v2:cleanup';
 const sidebarKey = 'content-studio-edgeone-copilot:v2:sidebar-collapsed';
 
@@ -48,6 +49,7 @@ export function saveSidebarCollapsedPreference(collapsed) {
 
 export function getProjectUiPreferences(projectId) {
   cleanupLegacyCopilotStorage();
+  // 当前项目的会话选择、置顶列表和标题覆盖写入 sessionStorage。
   const value = readDemoSessionTable(projectId, demoTableNames.copilotUi, {});
   return {
     activeConversationId: typeof value?.activeConversationId === 'string' ? value.activeConversationId : '',

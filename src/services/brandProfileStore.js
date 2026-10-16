@@ -89,6 +89,7 @@ export function createDefaultBrandProfile(project) {
 
 export function getBrandProfileDraft(project) {
   const defaultProfile = createDefaultBrandProfile(project);
+  // 品牌档案草稿从当前标签页的项目快照读取，缺失时回退到演示种子。
   const snapshot = readDemoSessionTable(project.id, demoTableNames.brandProfile, defaultProfile);
   return snapshot && typeof snapshot === 'object' && !Array.isArray(snapshot)
     ? { ...defaultProfile, ...snapshot }
@@ -96,6 +97,7 @@ export function getBrandProfileDraft(project) {
 }
 
 export function saveBrandProfileDraft(projectId, data) {
+  // 保存品牌档案只更新当前项目的 sessionStorage 快照。
   return writeDemoSessionTable(projectId, demoTableNames.brandProfile, data);
 }
 

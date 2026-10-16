@@ -42,6 +42,7 @@ import {
   saveSidebarCollapsedPreference,
 } from './services/sidebarPreferenceStore.js';
 
+// 界面语言保存到 localStorage，刷新页面后继续使用上次选择。
 const localeStorageKey = 'content-studio-locale';
 
 // 初始化界面语言，未知语言回退到默认语言包。

@@ -26,10 +26,12 @@ function clone(value) {
   if (value === undefined) return undefined;
   return JSON.parse(JSON.stringify(value));
 }
+// 项目业务草稿写入当前标签页的 sessionStorage，关闭标签页后不再保留。
 function getSessionStorage() {
   return typeof window !== 'undefined' ? window.sessionStorage : null;
 }
 
+// localStorage 只保存跨标签页的迁移标记和显示偏好，不保存业务草稿。
 function getLocalStorage() {
   return typeof window !== 'undefined' ? window.localStorage : null;
 }
@@ -66,6 +68,7 @@ export function writeDemoSessionTable(projectId, tableName, data) {
   const storage = getSessionStorage();
   if (!storage) return data;
 
+  // 表快照按项目和表名隔离，文章、任务、知识资料等业务数据共用此写入入口。
   storage.setItem(
     getDemoSessionTableKey(projectId, tableName),
     JSON.stringify({
@@ -97,6 +100,7 @@ export function getDemoSessionId() {
   const storage = getSessionStorage();
   if (!storage) return 'server';
 
+  // 浏览器用户标识保存在 sessionStorage，用于隔离当前标签页发起的 Copilot 会话。
   let value = storage.getItem(sessionIdKey) || '';
   if (!value) {
     value = globalThis.crypto?.randomUUID?.() || `demo-session-${Date.now()}-${Math.random().toString(16).slice(2)}`;

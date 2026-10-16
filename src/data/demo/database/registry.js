@@ -2,6 +2,7 @@ import { goweGroupDemoDatabase } from './projects/gowe-group/index.js';
 import { rejinCncDemoDatabase } from './projects/rejin-cnc/index.js';
 import { demoTableNameSet } from './schema.js';
 
+// 固定演示数据随前端构建打包，仅作为各项目首次读取的种子数据。
 const databases = Object.freeze({
   [goweGroupDemoDatabase.projectId]: goweGroupDemoDatabase,
   [rejinCncDemoDatabase.projectId]: rejinCncDemoDatabase,

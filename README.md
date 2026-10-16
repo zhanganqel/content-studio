@@ -42,9 +42,6 @@ Content Studio/
 
 - Node.js `^20.19.0` 或 `>=22.12.0`{-JavaScript 运行环境:满足当前 Vite 版本要求并同时提供 npm 命令}。
 - npm 10 或更高版本{-统一包管理器:依据 `package-lock.json` 安装确定版本的依赖}。
-- EdgeOne CLI{-部署与一体化本地联调工具:本机安装位置为 `~/.agents/edgeone-cli/`}。
-
-当前终端若提示找不到 `node` 或 `npm`，先安装 Node.js LTS，再执行下方命令；不要重新引入 pnpm 锁文件或工作区配置。
 
 ## 环境变量
 

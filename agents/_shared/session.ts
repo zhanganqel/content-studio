@@ -45,6 +45,7 @@ function attachmentMetadata(attachments: CopilotKnowledgeAttachment[]) {
   return attachments.map(({ content: _content, ...attachment }) => attachment);
 }
 
+// 将 Agent SDK 会话映射到 EdgeOne 托管存储，持久化会话元数据和消息记录。
 export function createEdgeOneSession({
   attachments,
   conversationId,
@@ -104,6 +105,7 @@ export function createEdgeOneSession({
           wroteAssistantSourceMetadata = true;
         }
 
+        // 每条 Agent 输入输出都写入 EdgeOne 会话存储，供历史记录和后续上下文恢复使用。
         await store.appendMessage({
           content: item,
           conversationId,
@@ -120,6 +122,7 @@ export function createEdgeOneSession({
     },
 
     async getItems(limit = 80) {
+      // 从 EdgeOne 会话存储读取最近消息，恢复 Agent SDK 的连续上下文。
       const messages = await store.getMessages({
         conversationId,
         limit: Math.min(Math.max(limit, 1), 100),

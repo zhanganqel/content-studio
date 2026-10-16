@@ -91,6 +91,7 @@ export async function onRequest(context: any) {
     name: 'Content Studio Copilot',
     tools: [],
   });
+  // context.store 是 EdgeOne 托管会话存储，聊天消息不会写入浏览器业务草稿。
   const session = createEdgeOneSession({
     attachments,
     conversationId,

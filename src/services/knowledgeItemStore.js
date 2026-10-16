@@ -310,12 +310,14 @@ function createDefaultDraft(project) {
 // 读取知识条目草稿时归一化类型和行，缺失数据回退到项目默认草稿。
 export function getKnowledgeItemDraft(project) {
   const fallback = createDefaultDraft(project);
+  // 知识条目表格从当前标签页的项目快照恢复，缺失时使用演示种子。
   const snapshot = readDemoSessionTable(project.id, demoTableNames.knowledgeItems, fallback);
   return normalizeDraft(snapshot, project);
 }
 
 export function saveKnowledgeItemDraft(projectId, data) {
   const normalized = normalizeDraft(data);
+  // 知识条目结构和行数据统一写入当前项目的 sessionStorage 快照。
   return writeDemoSessionTable(projectId, demoTableNames.knowledgeItems, normalized);
 }
 

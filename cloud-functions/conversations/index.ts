@@ -36,6 +36,7 @@ export async function onRequestPost(context: any) {
   }
 
   try {
+    // 从 EdgeOne 托管存储读取当前用户的会话索引，再按项目筛选。
     const result = await context.agent.store.listConversations({
       limit,
       order: 'desc',

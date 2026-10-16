@@ -14,6 +14,7 @@ export async function onRequestPost(context: any) {
     if (!await canAccessConversation(context.agent.store, conversationId, userId)) {
       return jsonResponse({ error: 'Conversation not found.' }, 404);
     }
+    // 删除 EdgeOne 托管存储中的会话索引及其关联消息记录。
     await context.agent.store.deleteConversation({ conversationId, userId });
     return jsonResponse({ conversationId, status: 'ok' });
   } catch (error) {

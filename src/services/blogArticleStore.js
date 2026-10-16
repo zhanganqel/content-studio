@@ -106,6 +106,7 @@ export function getBlogArticleDrafts(project) {
 }
 
 export function saveBlogArticleDrafts(projectId, articles) {
+  // 文章列表写入当前项目的 sessionStorage 快照，不修改固定演示文章。
   return writeDemoSessionTable(projectId, demoTableNames.blogArticles, articles);
 }
 

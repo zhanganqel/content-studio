@@ -120,37 +120,6 @@ function MetricCard({ icon: Icon, label, value }) {
   );
 }
 
-function TabBar({ activeTab, copy, onTabChange }) {
-  return (
-    <div className="flex items-center gap-2 border-b border-slate-200">
-      <button
-        type="button"
-        className={`inline-flex h-11 items-center gap-2 rounded-t-lg border-b-2 px-5 text-sm font-bold transition ${
-          activeTab === 'files'
-            ? 'border-blue-600 text-blue-600'
-            : 'border-transparent text-slate-400 hover:text-slate-600'
-        }`}
-        onClick={() => onTabChange('files')}
-      >
-        <FileText className="h-4 w-4" />
-        {copy.tabs.files}
-      </button>
-      <button
-        type="button"
-        className={`inline-flex h-11 items-center gap-2 rounded-t-lg border-b-2 px-5 text-sm font-bold transition ${
-          activeTab === 'media'
-            ? 'border-blue-600 text-blue-600'
-            : 'border-transparent text-slate-400 hover:text-slate-600'
-        }`}
-        onClick={() => onTabChange('media')}
-      >
-        <Library className="h-4 w-4" />
-        {copy.tabs.library}
-      </button>
-    </div>
-  );
-}
-
 function TagFilterButton({ activeTag, copy, onTagChange, tagOptions }) {
   const [tagMenuOpen, setTagMenuOpen] = useState(false);
   const tagMenuRef = useRef(null);
@@ -622,9 +591,9 @@ function WebParseDialog({ copy, onCancel, onSubmit }) {
 }
 
 export default function KnowledgeAssetsPage({ project, t }) {
-  // 页面同时管理文件库和媒体库，activeTab 决定当前展示和操作对象。
+  // 当前知识文件页固定展示资料库；素材库数据保留给后续独立入口。
   const copy = t.knowledgeAssets;
-  const [activeTab, setActiveTab] = useState('files');
+  const activeTab = 'files';
   const [files, setFiles] = useState(() => listFiles(project));
   const [mediaAssets, setMediaAssets] = useState(() => listMediaAssets(project));
   const [searchQuery, setSearchQuery] = useState('');
@@ -641,7 +610,6 @@ export default function KnowledgeAssetsPage({ project, t }) {
 
   useEffect(() => {
     // 切换项目时重新读取文件、媒体和分块入口状态。
-    setActiveTab('files');
     setSearchQuery('');
     setActiveCategory('all');
     setActiveTag('all');
@@ -649,16 +617,6 @@ export default function KnowledgeAssetsPage({ project, t }) {
     setMediaAssets(listMediaAssets(project));
     setChunkFileId('');
   }, [project]);
-
-  useEffect(() => {
-    // 切换文件/媒体标签页时重置筛选，并把滚动位置回到顶部。
-    setSearchQuery('');
-    setActiveCategory('all');
-    setActiveTag('all');
-    if (bodyScrollRef.current) {
-      bodyScrollRef.current.scrollTop = 0;
-    }
-  }, [activeTab]);
 
   function showToast(message, type = 'success') {
     toast.show({ message, type });
@@ -922,7 +880,6 @@ export default function KnowledgeAssetsPage({ project, t }) {
         }
         controls={
           <>
-            <TabBar activeTab={activeTab} copy={copy} onTabChange={setActiveTab} />
             {filterPanel}
           </>
         }

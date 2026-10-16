@@ -7,6 +7,7 @@ import { readDemoSessionTable, writeDemoSessionTable } from './demoSessionStore.
 
 const maxFileSize = 20 * 1024 * 1024;
 const allowedExtensions = new Set(['docx', 'xlsx', 'xls', 'pdf', 'txt', 'md']);
+// 上传文件本体仅保存在当前页面内存，刷新后只保留 sessionStorage 中的元数据。
 const uploadedBlobStore = new Map();
 let pdfjsLibPromise = null;
 

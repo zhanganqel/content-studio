@@ -5,6 +5,7 @@ import { readDemoSessionTable, writeDemoSessionTable } from './demoSessionStore.
 const maxMediaFileSize = 100 * 1024 * 1024;
 const imageExtensions = new Set(['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg']);
 const videoExtensions = new Set(['mp4', 'webm', 'mov']);
+// 上传媒体本体仅保存在当前页面内存，刷新后只保留 sessionStorage 中的元数据。
 const uploadedMediaBlobStore = new Map();
 
 // 媒体库支持项目对象和项目 ID 两种入参，页面调用可以保持简洁。

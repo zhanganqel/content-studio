@@ -311,6 +311,7 @@ export function saveAiCreationTask(projectId, taskInput) {
   };
   const nextTasks = [task, ...currentTasks];
 
+  // AI 创作任务及其阶段产物写入当前项目的 sessionStorage 快照。
   writeDemoSessionTable(projectId, demoTableNames.articleCreationTasks, nextTasks);
 
   return task;
